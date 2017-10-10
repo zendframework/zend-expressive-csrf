@@ -1,0 +1,11 @@
+docs_dir: docs/book
+site_dir: docs/html
+pages:
+    - index.md
+    - Introduction: intro.md
+    - "CSRF Guards": guard.md
+    - "CSRF Middleware": middleware.md
+site_name: zend-expressive-csrf
+site_description: 'CSRF protection for PSR-7 applications using zend-expressive-session'
+repo_url: 'https://github.com/zendframework/zend-expressive-csrf'
+copyright: 'Copyright (c) 2017 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
