@@ -21,7 +21,7 @@ class ConfigProvider
         return [
             'aliases' => [
                 // Change this to the CsrfGuardFactoryInterface implementation you wish to use:
-                CsrfGuardFactoryInterface::class => FlashCsrfGuardFactory::class,
+                CsrfGuardFactoryInterface::class => SessionCsrfGuardFactory::class,
             ],
             'invokables' => [
                 FlashCsrfGuardFactory::class   => FlashCsrfGuardFactory::class,
