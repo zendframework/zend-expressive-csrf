@@ -45,8 +45,8 @@ As an example, we could have middleware displaying a form as follows:
 ```php
 namespace Books;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use Interop\Http\Server\RequestHandlerInterface;
+use Interop\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -63,7 +63,7 @@ class DisplayBookFormHandler implements MiddlewareInterface
         $this->renderer = $renderer;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
         $token = $guard->generateToken();
@@ -82,8 +82,8 @@ When we're ready to process it, we then might have the following middleware:
 ```php
 namespace Books;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use Interop\Http\Server\RequestHandlerInterface;
+use Interop\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\EmptyResponse;
@@ -101,7 +101,7 @@ class ProcessBookFormHandler implements MiddlewareInterface
         $this->renderer = $renderer;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
         $data  = $request->getParsedBody();
@@ -190,7 +190,7 @@ class SomeHandler implements MiddlewareInterface
         $this->guardFactory = $guardFactory;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler)
     {
         $guard = $this->guardFactory->createGuardFromRequest($request);
         // ...
