@@ -8,7 +8,6 @@
 namespace ZendTest\Expressive\Csrf;
 
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Csrf\Exception;
 use Zend\Expressive\Csrf\FlashCsrfGuard;
