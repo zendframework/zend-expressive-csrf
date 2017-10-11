@@ -7,14 +7,16 @@
 
 namespace ZendTest\Expressive\Csrf;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Webimpress\HttpMiddlewareCompatibility\HandlerInterface as DelegateInterface;
 use Zend\Expressive\Csrf\CsrfGuardFactoryInterface;
 use Zend\Expressive\Csrf\CsrfGuardInterface;
 use Zend\Expressive\Csrf\CsrfMiddleware;
+
+use const Webimpress\HttpMiddlewareCompatibility\HANDLER_METHOD;
 
 class CsrfMiddlewareTest extends TestCase
 {
@@ -64,7 +66,7 @@ class CsrfMiddlewareTest extends TestCase
         $request->withAttribute($attributeKey, $guard)->will([$request, 'reveal']);
 
         $delegate = $this->prophesize(DelegateInterface::class);
-        $delegate->process(Argument::that([$request, 'reveal']))->willReturn($response);
+        $delegate->{HANDLER_METHOD}(Argument::that([$request, 'reveal']))->willReturn($response);
 
         $this->assertSame($response, $middleware->process($request->reveal(), $delegate->reveal()));
     }
