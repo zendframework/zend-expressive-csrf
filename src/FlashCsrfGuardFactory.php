@@ -8,8 +8,8 @@
 namespace Zend\Expressive\Csrf;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Expressive\Flash\FlashMessagesInterface;
 use Zend\Expressive\Flash\FlashMessageMiddleware;
+use Zend\Expressive\Flash\FlashMessagesInterface;
 
 class FlashCsrfGuardFactory implements CsrfGuardFactoryInterface
 {
