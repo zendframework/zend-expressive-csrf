@@ -7,10 +7,12 @@
 
 namespace Zend\Expressive\Csrf;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Webimpress\HttpMiddlewareCompatibility\HandlerInterface as DelegateInterface;
+use Webimpress\HttpMiddlewareCompatibility\MiddlewareInterface;
+
+use const Webimpress\HttpMiddlewareCompatibility\HANDLER_METHOD;
 
 /**
  * Create a CSRF guard and inject it as a request attribute.
@@ -47,6 +49,6 @@ class CsrfMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
     {
         $guard = $this->guardFactory->createGuardFromRequest($request);
-        return $delegate->process($request->withAttribute($this->attributeKey, $guard));
+        return $delegate->{HANDLER_METHOD}($request->withAttribute($this->attributeKey, $guard));
     }
 }
