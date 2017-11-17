@@ -7,8 +7,8 @@
 
 namespace Zend\Expressive\Csrf;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use Interop\Http\Server\MiddlewareInterface;
+use Interop\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -44,9 +44,9 @@ class CsrfMiddleware implements MiddlewareInterface
         $this->attributeKey = $attributeKey;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guard = $this->guardFactory->createGuardFromRequest($request);
-        return $delegate->process($request->withAttribute($this->attributeKey, $guard));
+        return $handler->handle($request->withAttribute($this->attributeKey, $guard));
     }
 }

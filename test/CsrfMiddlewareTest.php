@@ -7,7 +7,7 @@
 
 namespace ZendTest\Expressive\Csrf;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\Server\RequestHandlerInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\ResponseInterface;
@@ -63,9 +63,9 @@ class CsrfMiddlewareTest extends TestCase
         $this->guardFactory->createGuardFromRequest($request->reveal())->willReturn($guard);
         $request->withAttribute($attributeKey, $guard)->will([$request, 'reveal']);
 
-        $delegate = $this->prophesize(DelegateInterface::class);
-        $delegate->process(Argument::that([$request, 'reveal']))->willReturn($response);
+        $handler = $this->prophesize(RequestHandlerInterface::class);
+        $handler->handle(Argument::that([$request, 'reveal']))->willReturn($response);
 
-        $this->assertSame($response, $middleware->process($request->reveal(), $delegate->reveal()));
+        $this->assertSame($response, $middleware->process($request->reveal(), $handler->reveal()));
     }
 }
