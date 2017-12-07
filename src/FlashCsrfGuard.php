@@ -5,6 +5,8 @@
  * @license   https://github.com/zendframework/zend-expressive-csrf/blob/master/LICENSE.md New BSD License
  */
 
+declare(strict_types=1);
+
 namespace Zend\Expressive\Csrf;
 
 use Zend\Expressive\Flash\FlashMessagesInterface;
