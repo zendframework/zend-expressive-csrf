@@ -166,7 +166,6 @@ interface CsrfGuardInterface
     public function validateToken(string $token, string $csrfKey = '__csrf') : bool;
 }</code></pre>
 
-
 <p>Because guards will be backed by different mechanisms, we provide
 <a href="../middleware/">CsrfMiddleware</a> that will generate the guard based on
 configuration, and inject it into the request passed to later middleware; this
@@ -211,7 +210,6 @@ class DisplayBookFormHandler implements MiddlewareInterface
     }
 }</code></pre>
 
-
 <p>When we're ready to process it, we then might have the following middleware:</p>
 <pre class="codehilite"><code class="language-php">namespace Books;
 
@@ -248,7 +246,6 @@ class ProcessBookFormHandler implements MiddlewareInterface
     }
 }</code></pre>
 
-
 <p>This approach allows you to prevent CSRF attacks <em>separately</em> from normal form
 validation, which can also simplify how your forms are structured.</p>
 <p>We provide two guard implementations, one using the base session container
@@ -269,7 +266,6 @@ validating a submitted token.</p>
 package:</p>
 <pre class="codehilite"><code class="language-bash">$ composer require zendframework/zend-expressive-flash</code></pre>
 
-
 <h2 id="guard-factories">Guard factories</h2>
 <p>Because guard implementations generally require request-based artifacts in order
 to do their work, we provide an interface describing a factory for generating
@@ -285,7 +281,6 @@ interface CsrfGuardFactoryInterface
 {
     public function createGuardFromRequest(ServerRequestInterface $request) : CsrfGuardInterface;
 }</code></pre>
-
 
 <p>We provide the following concrete factories:</p>
 <ul>
@@ -380,7 +375,7 @@ instance prior to generating or validating a token:</p>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script>var base_url = '..';</script>
-    <script src="../js/scripts-019f7ac1f7.js"></script>
+    <script src="../js/scripts-0b6185f4a5.js"></script>
     <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
