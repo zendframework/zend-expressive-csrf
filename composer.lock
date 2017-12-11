@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad61232e8062ebf0e783db899a63f91a",
+    "content-hash": "c20ec088d08b86ea60c9fcf7294231dc",
     "packages": [
         {
             "name": "http-interop/http-middleware",
@@ -56,6 +56,7 @@
                 "request",
                 "response"
             ],
+            "abandoned": "http-interop/http-server-middleware",
             "time": "2017-01-14T15:23:42+00:00"
         },
         {
