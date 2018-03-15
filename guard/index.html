@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/styles-482aa2add1.css">
+    <link rel="stylesheet" href="../css/styles-288837cc22.css">
 
     
 </head>
@@ -48,9 +49,12 @@
                 <ul class="nav navbar-nav">
                 
                 
+                
                     <li >
-                        <a href="..">Home</a>
+                        <a href="..">zend-expressive-csrf</a>
                     </li>
+                
+                
                 
                 
                 
@@ -60,15 +64,20 @@
                 
                 
                 
+                
+                
                     <li class="active">
                         <a href="./">CSRF Guards</a>
                     </li>
                 
                 
                 
+                
+                
                     <li >
                         <a href="../middleware/">CSRF Middleware</a>
                     </li>
+                
                 
                 
                 </ul>
@@ -88,7 +97,7 @@
                 </li>
                 
                     <li>
-                        <a href="https://github.com/zendframework/zend-expressive-csrf">
+                        <a href="https://github.com/zendframework/zend-expressive-csrf/">
                             
                                 <i class="fa fa-github"></i>
                             
@@ -179,10 +188,10 @@ on request data) from your own middleware.</p>
 <p>As an example, we could have middleware displaying a form as follows:</p>
 <pre class="codehilite"><code class="language-php">namespace Books;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Csrf\CsrfGuardInterface;
 use Zend\Expressive\Csrf\CsrfMiddleware;
@@ -197,7 +206,7 @@ class DisplayBookFormHandler implements MiddlewareInterface
         $this-&gt;renderer = $renderer;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guard = $request-&gt;getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
         $token = $guard-&gt;generateToken();
@@ -213,10 +222,10 @@ class DisplayBookFormHandler implements MiddlewareInterface
 <p>When we're ready to process it, we then might have the following middleware:</p>
 <pre class="codehilite"><code class="language-php">namespace Books;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Csrf\CsrfGuardInterface;
@@ -232,7 +241,7 @@ class ProcessBookFormHandler implements MiddlewareInterface
         $this-&gt;renderer = $renderer;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guard = $request-&gt;getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
         $data  = $request-&gt;getParsedBody();
@@ -303,7 +312,7 @@ instance prior to generating or validating a token:</p>
         $this-&gt;guardFactory = $guardFactory;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guard = $this-&gt;guardFactory-&gt;createGuardFromRequest($request);
         // ...
@@ -377,6 +386,8 @@ instance prior to generating or validating a token:</p>
     <script>var base_url = '..';</script>
     <script src="../js/scripts-0b6185f4a5.js"></script>
     <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../search/require.js"></script>
+        <script src="../search/search.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
         <div class="modal-dialog">
@@ -418,5 +429,6 @@ instance prior to generating or validating a token:</p>
 </div>
 
 </body>
+
 
 </html>
