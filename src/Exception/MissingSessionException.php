@@ -13,6 +13,8 @@ use RuntimeException;
 use Zend\Expressive\Csrf\SessionCsrfGuard;
 use Zend\Expressive\Session\SessionMiddleware;
 
+use function sprintf;
+
 class MissingSessionException extends RuntimeException implements ExceptionInterface
 {
     public static function create() : self

@@ -13,6 +13,8 @@ use RuntimeException;
 use Zend\Expressive\Csrf\FlashCsrfGuard;
 use Zend\Expressive\Flash\FlashMessageMiddleware;
 
+use function sprintf;
+
 class MissingFlashMessagesException extends RuntimeException implements ExceptionInterface
 {
     public static function create() : self

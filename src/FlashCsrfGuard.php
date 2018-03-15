@@ -11,6 +11,9 @@ namespace Zend\Expressive\Csrf;
 
 use Zend\Expressive\Flash\FlashMessagesInterface;
 
+use function bin2hex;
+use function random_bytes;
+
 class FlashCsrfGuard implements CsrfGuardInterface
 {
     /**

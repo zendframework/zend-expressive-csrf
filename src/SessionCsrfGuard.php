@@ -11,6 +11,9 @@ namespace Zend\Expressive\Csrf;
 
 use Zend\Expressive\Session\SessionInterface;
 
+use function bin2hex;
+use function random_bytes;
+
 class SessionCsrfGuard implements CsrfGuardInterface
 {
     /**
