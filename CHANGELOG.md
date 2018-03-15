@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.0.0alpha1 - 2018-02-07
+## 1.0.0 - 2018-03-15
 
 ### Added
 
@@ -11,7 +11,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Changed
 
-- Nothing.
+- Updates minimum supported versions of both zend-expressive-session and
+  zend-expressive-flash to 1.0.0.
 
 ### Deprecated
 
@@ -20,7 +21,7 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Removed
 
 - [#5](https://github.com/zendframework/zend-expressive-csrf/pull/5) and
-- [#3](https://github.com/zendframework/zend-expressive-csrf/pull/3) remove
+  [#3](https://github.com/zendframework/zend-expressive-csrf/pull/3) remove
   support for http-interop/http-middleware and
   http-interop/http-server-middleware.
 
