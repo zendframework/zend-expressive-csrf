@@ -1,16 +1,18 @@
 <?php
 /**
  * @see       https://github.com/zendframework/zend-expressive-csrf for the canonical source repository
- * @copyright Copyright (c) 2017 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2017-2018 Zend Technologies USA Inc. (https://www.zend.com)
  * @license   https://github.com/zendframework/zend-expressive-csrf/blob/master/LICENSE.md New BSD License
  */
 
+declare(strict_types=1);
+
 namespace Zend\Expressive\Csrf;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Create a CSRF guard and inject it as a request attribute.
@@ -44,9 +46,9 @@ class CsrfMiddleware implements MiddlewareInterface
         $this->attributeKey = $attributeKey;
     }
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guard = $this->guardFactory->createGuardFromRequest($request);
-        return $delegate->process($request->withAttribute($this->attributeKey, $guard));
+        return $handler->handle($request->withAttribute($this->attributeKey, $guard));
     }
 }
