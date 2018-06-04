@@ -1,4 +1,4 @@
-# zend-expressive-csrf
+# Introduction
 
 [Cross-Site Request Forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
 (CSRF) is a security vector in which an unauthorized request is accepted by a server on
