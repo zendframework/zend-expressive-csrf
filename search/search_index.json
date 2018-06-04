@@ -22,13 +22,13 @@
         },
         {
             "location": "/intro/",
-            "text": "zend-expressive-csrf\n\n\nCross-Site Request Forgery\n\n(CSRF) is a security vector in which an unauthorized request is accepted by a server on\nbehalf of another user; it is essentially an exploit of the trust a site places\non a user's browser.\n\n\nThe typical mitigation is to create a one-time token that is transmitted as part\nof the original form, and which must then be transmitted back by the client.\nThis token \nexpires\n after first submission or after a short amount of time,\npreventing replays or further submissions. If the token provided does not match\nwhat was originally sent, an error should be returned.\n\n\nzend-expressive-csrf provides utilities for both generating CSRF tokens, as well\nas validating them. Tokens are stored within a session, and expire after any\nattempt to validate.",
+            "text": "Introduction\n\n\nCross-Site Request Forgery\n\n(CSRF) is a security vector in which an unauthorized request is accepted by a server on\nbehalf of another user; it is essentially an exploit of the trust a site places\non a user's browser.\n\n\nThe typical mitigation is to create a one-time token that is transmitted as part\nof the original form, and which must then be transmitted back by the client.\nThis token \nexpires\n after first submission or after a short amount of time,\npreventing replays or further submissions. If the token provided does not match\nwhat was originally sent, an error should be returned.\n\n\nzend-expressive-csrf provides utilities for both generating CSRF tokens, as well\nas validating them. Tokens are stored within a session, and expire after any\nattempt to validate.",
             "title": "Introduction"
         },
         {
-            "location": "/intro/#zend-expressive-csrf",
+            "location": "/intro/#introduction",
             "text": "Cross-Site Request Forgery \n(CSRF) is a security vector in which an unauthorized request is accepted by a server on\nbehalf of another user; it is essentially an exploit of the trust a site places\non a user's browser.  The typical mitigation is to create a one-time token that is transmitted as part\nof the original form, and which must then be transmitted back by the client.\nThis token  expires  after first submission or after a short amount of time,\npreventing replays or further submissions. If the token provided does not match\nwhat was originally sent, an error should be returned.  zend-expressive-csrf provides utilities for both generating CSRF tokens, as well\nas validating them. Tokens are stored within a session, and expire after any\nattempt to validate.",
-            "title": "zend-expressive-csrf"
+            "title": "Introduction"
         },
         {
             "location": "/guard/",
