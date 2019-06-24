@@ -32,7 +32,7 @@ interface CsrfGuardInterface
 Because guards will be backed by different mechanisms, we provide
 [CsrfMiddleware](middleware.md) that will generate the guard based on
 configuration, and inject it into the request passed to later middleware; this
-approach allows you to separate generation fo the guard instance (which is based
+approach allows you to separate generation from the guard instance (which is based
 on request data) from your own middleware.
 
 Once you have a concrete implementation, you will generally:

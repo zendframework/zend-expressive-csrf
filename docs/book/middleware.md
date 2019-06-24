@@ -13,7 +13,7 @@ The `CsrfMiddleware` has the following constructor arguments:
 - `CsrfGuardFactoryInterface $guardFactory`: a concrete instance to use for
   generating the CSRF guard instance.
 - `string $attributeKey`: the name of the request attribute in which to store
-  the CSRF guard instance. Defaults to the `CsrfMiddlewar::GUARD_ATTRIBUTE`
+  the CSRF guard instance. Defaults to the `CsrfMiddleware::GUARD_ATTRIBUTE`
   ("csrf").
 
 We provide and map a factory for the middleware,
