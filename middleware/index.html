@@ -270,11 +270,10 @@ is, and points to the <code>SessionCsrfGuard</code> implementation).</p>
 must be piped <strong>AFTER</strong> that middleware. It can be piped either in the
 application pipeline, or within routed middleware.</p>
 <p>As an example, in <code>config/pipeline.php</code>:</p>
-<pre class="codehilite"><code class="language-php">$app-&gt;pipe(\Zend\Expressive\Session\SessionMiddleware::class);
-$app-&gt;pipe(\Zend\Expressive\Csrf\CsrfMiddleware::class);</code></pre>
-
+<p> <pre class=codehilite><code class=language-php>$app-&gt;pipe(\Zend\Expressive\Session\SessionMiddleware::class);
+$app-&gt;pipe(\Zend\Expressive\Csrf\CsrfMiddleware::class);</code></pre></p>
 <p>Within routed middleware:</p>
-<pre class="codehilite"><code class="language-php">$app-&gt;get('/user/login', [
+<p> <pre class=codehilite><code class=language-php>$app-&gt;get('/user/login', [
     \Zend\Expressive\Session\SessionMiddleware::class,
     \Zend\Expressive\Csrf\CsrfMiddleware::class,
     UserLoginFormHandler::class,
@@ -284,7 +283,7 @@ $app-&gt;post('/user/login', [
     \Zend\Expressive\Session\SessionMiddleware::class,
     \Zend\Expressive\Csrf\CsrfMiddleware::class,
     ProcessUserLoginHandler::class,
-]);</code></pre>
+]);</code></pre></p>
 
 
 
@@ -314,7 +313,7 @@ $app-&gt;post('/user/login', [
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-expressive-csrf/edit/master/docs/middleware.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-expressive-csrf/edit/master/docs/book/middleware.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>
