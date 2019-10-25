@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSRF protection for PSR-7 applications using zend-expressive-session">  
+    <link rel="canonical" href="https://docs.zendframework.com/zend-expressive-csrf/guard/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <title>CSRF Guards - zend-expressive-csrf - Zend Framework Docs</title>
+
+    <link rel="stylesheet" href="../css/styles-5cfabd53ee.css">
+</head>
+<body id="page-top">
+
+    
+    <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+
+            
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            
+            <span class="navbar-brand">
+                <a class="logo-link" href="https://framework.zend.com/" data-tooltip data-placement="bottom" title="Go to the ZF homepage">
+                    <img src="../img/zend-framework-logo.svg" height="28" alt="Zend Framework">
+                </a>
+            </span>
+        </div>
+
+        <div class="navbar-collapse collapse">
+
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="https://framework.zend.com/about">About</a>
+                </li>
+                <li>
+                    <a href="https://framework.zend.com/downloads">Install</a>
+                </li>
+                <li class="active">
+                    <a href="https://docs.zendframework.com">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://www.zend.com/en/services/training">Training</a>
+                </li>
+                <li>
+                    <a href="https://framework.zend.com/blog">Blog</a>
+                </li>
+                <li>
+                    <a href="https://framework.zend.com/participate">Participate</a>
+                </li>
+            </ul>
+
+            
+            
+                <div class="nav navbar-nav navbar-collapse visible-xs-block ">
+                    
+    <div class="subnavigation hidden-print">
+        <h4 class="subnavigation__title">
+            <a href="..">zend-expressive-csrf</a>
+        </h4>
+
+        <h5 class="subnavigation__subtitle">Table of Contents</h5>
+
+        <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href=".." class="subnavigation__link">zend-expressive-csrf</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item subnavigation__list-item--active">
+                                <a href="./" class="subnavigation__link">CSRF Guards</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../middleware/" class="subnavigation__link">CSRF Middleware</a>
+                            </li>
+                        
+                    
+                
+            
+        </ul>
+    </div>
+
+                </div>
+            
+
+            
+            <div class="nav navbar-nav navbar-collapse visible-xs-block">
+                <div class="component-selector">
+    <h4 class="component-selector__title">Components</h4>
+    <h5 class="component-selector__subtitle">Find documentation…</h5>
+    <select class="form-control component-selector__control">
+        <option value="/">Overview</option>
+        <optgroup label="Components"></optgroup>
+    </select>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <header class="header">
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="col-xs-8">
+                <h1 class="header__title">
+                    Documentation
+
+                    
+                        <small class="header__subtitle">zend-expressive-csrf</small>
+                    
+                </h1>
+            </div>
+
+            
+            <div class="col-xs-4 text-right">
+                
+                    
+
+                    <a href="#" class="header__link header__link--search" data-toggle="modal" data-target="#mkdocs_search_modal" title="Open search">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                    <a href="https://github.com/zendframework/zend-expressive-csrf/" class="header__link header__link--github" title="Go to repository of zend-expressive-csrf">
+                        <i class="fa fa-github"></i> GitHub
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</header>
+
+    
+    <div class="laminas-announcement">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                Zend Framework transitions to the Linux Foundation. <a href="https://getlaminas.org">Learn More.</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-xs-12 content" role="main">
+            <!-- content:begin -->
+                
+                    <ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+    <li><a href="https://framework.zend.com/">Home</a></li>
+
+    
+        <li><a href="https://docs.zendframework.com/">Documentation</a></li>
+
+        
+            <li><a href="..">zend-expressive-csrf</a></li>
+
+            
+
+            <li class="active">CSRF Guards</li>
+        
+    
+</ol>
+
+
+
+
+
+
+    
+    
+
+    <div>
+        
+    
+
+    
+    
+        <div class="toc">
+            <h6 class="toc__headline">In This Article</h6>
+            <ul class="toc__list">
+                
+                    <li class="toc__entry">
+                        <a href="#session-based-guard" class="toc__link">Session-based guard</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#flash-based-guard" class="toc__link">Flash-based guard</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#guard-factories" class="toc__link">Guard factories</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+    </div>
+
+    <h1 id="csrf-guards">CSRF Guards</h1>
+<p>To provide CSRF protection, we provide an abstraction,
+<code>Zend\Expressive\Csrf\CsrfGuardInterface</code>:</p>
+<p> <pre class=codehilite><code class=language-php>namespace Zend\Expressive\Csrf;
+
+interface CsrfGuardInterface
+{
+    /**
+     * Generate a CSRF token.
+     *
+     * Typically, implementations should generate a one-time CSRF token,
+     * store it within the session, and return it so that developers may
+     * then inject it in a form, a response header, etc.
+     *
+     * CSRF tokens should EXPIRE after the first hop.
+     */
+    public function generateToken(string $keyName = '__csrf') : string;
+
+    /**
+     * Validate whether a submitted CSRF token is the same as the one stored in
+     * the session.
+     *
+     * CSRF tokens should EXPIRE after the first hop.
+     */
+    public function validateToken(string $token, string $csrfKey = '__csrf') : bool;
+}</code></pre></p>
+<p>Because guards will be backed by different mechanisms, we provide
+<a href="../middleware/">CsrfMiddleware</a> that will generate the guard based on
+configuration, and inject it into the request passed to later middleware; this
+approach allows you to separate generation from the guard instance (which is based
+on request data) from your own middleware.</p>
+<p>Once you have a concrete implementation, you will generally:</p>
+<ul>
+<li><em>Generate</em> a token in middleware displaying a form, and</li>
+<li><em>Validate</em> a token in middleware validating that form.</li>
+</ul>
+<p>As an example, we could have middleware displaying a form as follows:</p>
+<p> <pre class=codehilite><code class=language-php>namespace Books;
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Expressive\Csrf\CsrfGuardInterface;
+use Zend\Expressive\Csrf\CsrfMiddleware;
+use Zend\Expressive\Template\TemplateRendererInterface;
+
+class DisplayBookFormHandler implements MiddlewareInterface
+{
+    private $renderer;
+
+    public function __construct(TemplateRendererInterface $renderer)
+    {
+        $this-&gt;renderer = $renderer;
+    }
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    {
+        $guard = $request-&gt;getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
+        $token = $guard-&gt;generateToken();
+
+        return new HtmlResponse(
+            $this-&gt;renderer-&gt;render('books::form', [
+                '__csrf' =&gt; $token,
+            ]);
+        );
+    }
+}</code></pre></p>
+<p>When we're ready to process it, we then might have the following middleware:</p>
+<p> <pre class=codehilite><code class=language-php>namespace Books;
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Zend\Diactoros\Response\EmptyResponse;
+use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Expressive\Csrf\CsrfGuardInterface;
+use Zend\Expressive\Csrf\CsrfMiddleware;
+use Zend\Expressive\Template\TemplateRendererInterface;
+
+class ProcessBookFormHandler implements MiddlewareInterface
+{
+    private $renderer;
+
+    public function __construct(TemplateRendererInterface $renderer)
+    {
+        $this-&gt;renderer = $renderer;
+    }
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    {
+        $guard = $request-&gt;getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
+        $data  = $request-&gt;getParsedBody();
+        $token = $data['__csrf'] ?? '';
+
+        if (! $guard-&gt;validateToken($token)) {
+            return new EmptyResponse(412); // Precondition failed
+        }
+
+        // process form normally and return a response...
+    }
+}</code></pre></p>
+<p>This approach allows you to prevent CSRF attacks <em>separately</em> from normal form
+validation, which can also simplify how your forms are structured.</p>
+<p>We provide two guard implementations, one using the base session container
+functionality from zend-expressive-session, and another using flash messages as
+provided in zend-expressive-flash.</p>
+<h2 id="session-based-guard">Session-based guard</h2>
+<p>Session-based guards are provided via <code>Zend\Expressive\Csrf\SessionCsrfGuard</code>.
+This class expects a <code>Zend\Expressive\Session\SessionInterface</code> instance to its
+constructor, and it then uses that to both store a token in the session during
+<code>generateToken()</code>, and when validating a submitted token.</p>
+<h2 id="flash-based-guard">Flash-based guard</h2>
+<p>Flash guards are provided via <code>Zend\Expressive\Csrf\FlashCsrfGuard</code>.  This class
+expects a <code>Zend\Expressive\Flash\FlashMessagesInterface</code> instance to its
+constructor, and it then uses that to store a token via a flash message when
+<code>generateToken()</code> is called, and to retrieve a previously flashed token when
+validating a submitted token.</p>
+<p>To use this guard, you will also need to install the zend-expressive-flash
+package:</p>
+<p> <pre class=codehilite><code class=language-bash>$ composer require zendframework/zend-expressive-flash</code></pre></p>
+<h2 id="guard-factories">Guard factories</h2>
+<p>Because guard implementations generally require request-based artifacts in order
+to do their work, we provide an interface describing a factory for generating
+guards. Essentially, each guard implementation will also supply their own
+factory implementation, which the <a href="../middleware/">CsrfMiddleware</a> will then
+consume to create a guard instance.</p>
+<p><code>Zend\Expressive\Csrf\CsrfGuardFactoryInterface</code> defines the following:</p>
+<p> <pre class=codehilite><code class=language-php>namespace Zend\Expressive\Csrf;
+
+use Psr\Http\Message\ServerRequestInterface;
+
+interface CsrfGuardFactoryInterface
+{
+    public function createGuardFromRequest(ServerRequestInterface $request) : CsrfGuardInterface;
+}</code></pre></p>
+<p>We provide the following concrete factories:</p>
+<ul>
+<li><code>Zend\Expressive\Csrf\SessionCsrfGuardFactory</code></li>
+<li><code>Zend\Expressive\Csrf\FlashCsrfGuardFactory</code></li>
+</ul>
+<p>You will need to map the appropriate one to the
+<code>Zend\Expressive\Csrf\CsrfGuardFactoryInterface</code> service in your dependency
+injection container. By default, we map this service to the
+<code>SessionCsrfGuardFactory</code>.</p>
+<p>You may also compose the <code>CsrfGuardFactoryInterface</code> directly in your own
+middleware. When you do, you will have to manually use it to create the guard
+instance prior to generating or validating a token:</p>
+<p> <pre class=codehilite><code class=language-php>class SomeHandler implements MiddlewareInterface
+{
+    private $guardFactory;
+
+    public function __construct(CsrfGuardFactoryInterface $guardFactory)
+    {
+        $this-&gt;guardFactory = $guardFactory;
+    }
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    {
+        $guard = $this-&gt;guardFactory-&gt;createGuardFromRequest($request);
+        // ...
+    }
+}</code></pre></p>
+
+
+
+
+    <nav>
+    <ul class="page-nav hidden-print">
+
+        
+        <li class="page-nav__item">
+            
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../intro/">
+                    <i class="fa fa-chevron-left"></i> Previous
+                </a>
+            
+        </li>
+
+        
+        <li class="page-nav__item">
+            
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../middleware/">
+                    Next <i class="fa fa-chevron-right"></i>
+                </a>
+            
+        </li>
+    </ul>
+</nav>
+
+
+
+
+    <div class="help-wanted">
+        <p>
+            Found a mistake or want to contribute to the documentation?
+            <a href="https://github.com/zendframework/zend-expressive-csrf/edit/master/docs/book/guard.md" target="_blank" class="help-wanted__link">
+                Edit this page on GitHub!
+            </a>
+        </p>
+    </div>
+
+                
+            <!-- content:end -->
+            </div>
+            <div class="col-md-3 col-xs-12 sidebar">
+                
+                    <div class="component-selector">
+    <h4 class="component-selector__title">Components</h4>
+    <h5 class="component-selector__subtitle">Find documentation…</h5>
+    <select class="form-control component-selector__control">
+        <option value="/">Overview</option>
+        <optgroup label="Components"></optgroup>
+    </select>
+</div>
+                    
+    <div class="subnavigation hidden-print">
+        <h4 class="subnavigation__title">
+            <a href="..">zend-expressive-csrf</a>
+        </h4>
+
+        <h5 class="subnavigation__subtitle">Table of Contents</h5>
+
+        <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href=".." class="subnavigation__link">zend-expressive-csrf</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item subnavigation__list-item--active">
+                                <a href="./" class="subnavigation__link">CSRF Guards</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../middleware/" class="subnavigation__link">CSRF Middleware</a>
+                            </li>
+                        
+                    
+                
+            
+        </ul>
+    </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h5>Zend Framework</h5>
+                <ul>
+                    <li><a href="https://framework.zend.com/">framework.zend.com</a></li>
+                    <li><a href="https://docs.zendframework.com">docs.zendframework.com</a></li>
+                    <li><a href="https://packages.zendframework.com">packages.zendframework.com</a></li>
+                    <li><a href="https://apigility.org">apigility.org</a></li>
+                    <li><a href="https://getexpressive.org/">getexpressive.org</a></li>
+                </ul>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="footer__button" href="#page-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="row">
+
+            
+            <div class="col-md-9">
+                <h4 class="footer__headline">Copyright</h4>
+                <p>&copy; 2006-2019 by <a href="https://www.zend.com/">Zend</a>, a <a href="https://www.roguewave.com/">Rogue Wave Company</a>.</p>
+            </div>
+
+            
+            <div class="col-md-3">
+                <h4 class="footer__headline">Support</h4>
+                <ul class="support__list">
+                    <li class="support__list-item">
+                        <a href="https://discourse.zendframework.com" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://zendframework-slack.herokuapp.com" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://github.com/zendframework" class="support__link" title="Github"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://twitter.com/zfdevteam" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://tinyletter.com/mwopzend" class="support__link" title="Newsletter"><i class="fa fa-envelope"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://framework.zend.com/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://framework.zend.com/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        var base_url = '..',
+            siteName = 'zend-expressive-csrf';
+    </script>
+    <script src="../js/scripts-8d7ae56abf.js"></script>
+        <script src="../search/main.js"></script>
+
+    
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+
+</html>
