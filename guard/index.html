@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CSRF protection for PSR-7 applications using zend-expressive-session">  
-    <link rel="canonical" href="https://docs.zendframework.com/zend-expressive-csrf/guard/">
+    <link rel="canonical" href="https://docs.zendframework.com/guard/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     <title>CSRF Guards - zend-expressive-csrf - Zend Framework Docs</title>
 
-    <link rel="stylesheet" href="../css/styles-5cfabd53ee.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body id="page-top">
 
@@ -188,9 +188,9 @@
     <div class="laminas-announcement">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                Zend Framework transitions to the Linux Foundation. <a href="https://getlaminas.org">Learn More.</a>
-            </div>
+            <div class="col-xs-12"><strong>
+                This package has moved. Visit its replacement, <a href="https://docs.mezzio.dev/mezzio-csrf/">mezzio/mezzio-csrf.</a>
+            </strong></div>
         </div>
     </div>
 </div>
@@ -256,7 +256,7 @@
     <h1 id="csrf-guards">CSRF Guards</h1>
 <p>To provide CSRF protection, we provide an abstraction,
 <code>Zend\Expressive\Csrf\CsrfGuardInterface</code>:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Zend\Expressive\Csrf;
+<pre><code class="language-php">namespace Zend\Expressive\Csrf;
 
 interface CsrfGuardInterface
 {
@@ -278,7 +278,9 @@ interface CsrfGuardInterface
      * CSRF tokens should EXPIRE after the first hop.
      */
     public function validateToken(string $token, string $csrfKey = '__csrf') : bool;
-}</code></pre></p>
+}
+</code></pre>
+
 <p>Because guards will be backed by different mechanisms, we provide
 <a href="../middleware/">CsrfMiddleware</a> that will generate the guard based on
 configuration, and inject it into the request passed to later middleware; this
@@ -290,7 +292,7 @@ on request data) from your own middleware.</p>
 <li><em>Validate</em> a token in middleware validating that form.</li>
 </ul>
 <p>As an example, we could have middleware displaying a form as follows:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Books;
+<pre><code class="language-php">namespace Books;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -321,9 +323,11 @@ class DisplayBookFormHandler implements MiddlewareInterface
             ]);
         );
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>When we're ready to process it, we then might have the following middleware:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Books;
+<pre><code class="language-php">namespace Books;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -356,7 +360,9 @@ class ProcessBookFormHandler implements MiddlewareInterface
 
         // process form normally and return a response...
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>This approach allows you to prevent CSRF attacks <em>separately</em> from normal form
 validation, which can also simplify how your forms are structured.</p>
 <p>We provide two guard implementations, one using the base session container
@@ -375,7 +381,9 @@ constructor, and it then uses that to store a token via a flash message when
 validating a submitted token.</p>
 <p>To use this guard, you will also need to install the zend-expressive-flash
 package:</p>
-<p> <pre class=codehilite><code class=language-bash>$ composer require zendframework/zend-expressive-flash</code></pre></p>
+<pre><code class="language-bash">$ composer require zendframework/zend-expressive-flash
+</code></pre>
+
 <h2 id="guard-factories">Guard factories</h2>
 <p>Because guard implementations generally require request-based artifacts in order
 to do their work, we provide an interface describing a factory for generating
@@ -383,14 +391,16 @@ guards. Essentially, each guard implementation will also supply their own
 factory implementation, which the <a href="../middleware/">CsrfMiddleware</a> will then
 consume to create a guard instance.</p>
 <p><code>Zend\Expressive\Csrf\CsrfGuardFactoryInterface</code> defines the following:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Zend\Expressive\Csrf;
+<pre><code class="language-php">namespace Zend\Expressive\Csrf;
 
 use Psr\Http\Message\ServerRequestInterface;
 
 interface CsrfGuardFactoryInterface
 {
     public function createGuardFromRequest(ServerRequestInterface $request) : CsrfGuardInterface;
-}</code></pre></p>
+}
+</code></pre>
+
 <p>We provide the following concrete factories:</p>
 <ul>
 <li><code>Zend\Expressive\Csrf\SessionCsrfGuardFactory</code></li>
@@ -403,7 +413,7 @@ injection container. By default, we map this service to the
 <p>You may also compose the <code>CsrfGuardFactoryInterface</code> directly in your own
 middleware. When you do, you will have to manually use it to create the guard
 instance prior to generating or validating a token:</p>
-<p> <pre class=codehilite><code class=language-php>class SomeHandler implements MiddlewareInterface
+<pre><code class="language-php">class SomeHandler implements MiddlewareInterface
 {
     private $guardFactory;
 
@@ -417,7 +427,8 @@ instance prior to generating or validating a token:</p>
         $guard = $this-&gt;guardFactory-&gt;createGuardFromRequest($request);
         // ...
     }
-}</code></pre></p>
+}
+</code></pre>
 
 
 
@@ -572,7 +583,7 @@ instance prior to generating or validating a token:</p>
             
             <div class="col-md-9">
                 <h4 class="footer__headline">Copyright</h4>
-                <p>&copy; 2006-2019 by <a href="https://www.zend.com/">Zend</a>, a <a href="https://www.roguewave.com/">Rogue Wave Company</a>.</p>
+                <p>&copy; 2006-2020 by <a href="https://www.zend.com/">Zend</a> by <a href="https://www.perforce.com/">Perforce</a>.</p>
             </div>
 
             
@@ -580,10 +591,10 @@ instance prior to generating or validating a token:</p>
                 <h4 class="footer__headline">Support</h4>
                 <ul class="support__list">
                     <li class="support__list-item">
-                        <a href="https://discourse.zendframework.com" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                        <a href="https://discourse.laminas.dev" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
                     </li>
                     <li class="support__list-item">
-                        <a href="https://zendframework-slack.herokuapp.com" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                        <a href="https://laminas.dev/chat/" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
                     </li>
                     <li class="support__list-item">
                         <a href="https://github.com/zendframework" class="support__link" title="Github"><i class="fa fa-github"></i></a>
@@ -591,27 +602,28 @@ instance prior to generating or validating a token:</p>
                     <li class="support__list-item">
                         <a href="https://twitter.com/zfdevteam" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li class="support__list-item">
-                        <a href="https://tinyletter.com/mwopzend" class="support__link" title="Newsletter"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
 
+<nav class="cookie-bar navbar navbar-fixed-bottom navbar-default hidden">
+    <div class="container">
+        <p class="navbar-text">
+            We use cookies to allow you to dismiss dialogs such as the Laminas
+            Project notification.
+        </p>
+        <button type="button" class="cookie-button btn btn-default navbar-btn">Allow Cookies</button>
+    </div>
+</nav>
+
     <script>
         var base_url = '..',
             siteName = 'zend-expressive-csrf';
     </script>
-    <script src="../js/scripts-8d7ae56abf.js"></script>
-        <script src="../search/main.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="../search/main.js"></script>
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
